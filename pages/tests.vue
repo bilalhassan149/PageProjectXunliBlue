@@ -137,10 +137,8 @@
 </template>
 
 <script>
-import footers from "@/components/footers/footers";
 import state from "../store/state";
 export default {
-  components: { footers },
   data() {
     return {
         sss:[],

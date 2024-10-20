@@ -1,9 +1,11 @@
 <template>
   <div>
     <div class="pc">
+      <!-- <LangNav></LangNav> -->
+
       <view class="main_view f-c">
         <view class="left_one pc">
-          <text class="text_one">首存以下活动列表金额 - 获取终极豪礼</text>
+          <text class="text_one">{{$t('home.first_deposit')}}</text>
           <view class="home-list-y f-c f-wrap">
             <div
               class="lists-body-y"
@@ -12,10 +14,10 @@
             >
               <img class="ac-img-y" src="@/static/activity/y-money.png" />
               <div class="f-c ac-moneys-y">{{ data.money }}</div>
-              <span class="ac-texta-y">首存豪礼 {{ data.money }}</span>
-              <span class="ac-textb-y">需首存金额</span>
-              <div class="moneya-y">
-                ¥
+              <span class="ac-texta-y">{{$t('home.first_deposit_gift')}} {{ data.money }}</span>
+              <span class="ac-textb-y">{{$t('home.req_deposit_amount')}}</span>
+              <div class="moneya">
+                ¥ 
                 <el-statistic
                   group-separator=","
                   :precision="2"
@@ -25,7 +27,7 @@
                 </el-statistic>
               </div>
               <button class="f-c btns_y" @click="btnFx(data.money, data.id)">
-                立即兑换
+                {{$t('home.redeem')}}
               </button>
             </div>
           </view>
@@ -33,42 +35,37 @@
         <img class="right_one pc" src="@/static/activity/y-pc-home.png" />
       </view>
 
-      <div class="a-btn-y f-c">活动规则</div>
+      <div class="a-btn-y f-c">{{$t('home.activity_rules')}}</div>
       <p class="a-content-y">
-        1. 本活动汛利全员皆可参与；　
+        {{$t('home.rule_1')}}
         <i></i>
-        2. 首存豪礼：活动仅支持首次存款成功的账号，
-        24小时内累计的首存总金额满足活动要求，请于30天内进行兑换即可获得对应礼金。
-        （例如：会员首存金额达到50W即可申请18,888、6,888、5,888、3,888、1,888、388、138、88元礼金，八选一进行申请）;
+        {{$t('home.rule_2')}}
         <i></i>
-        3.
-        一个账号只能领取一次首存豪礼，礼金有效兑换期为30天，礼金有效期内没有领取视为主动放弃礼金;　
+        {{$t('home.rule_3')}}
         <i></i>
-        4.
-        礼金领取方式：会员在满足对应的条件后即可在活动页面点击“立即兑换”自助领取礼金，相关工作人员会按照申请顺序进行审核，礼金的
-        审核状态可在“兑奖记录”中进行查看，审核通过后汛利娱乐会依次发放礼金，礼金将在5个工作日内派发至用户的中心钱包；
+        {{$t('home.rule_4')}}
         <i></i>
-        5. 提款要求：首存豪礼需6倍流水提款；
+        {{$t('home.rule_5')}}
         <i></i>
-        6.
-        每位有效玩家、每1手机号码、电子邮箱、相同银行卡、每1个IP地址、每1台电脑使用者在活动期间每场赛事仅可享受1次优惠，
-        如会员使用一切不正常投注、套利等违规行为，我们将保留无限期审核扣回礼金及所产生的利润权利；
+        {{$t('home.rule_6')}}
         <i></i>
-        7. 此为避免文字理解差异，汛利娱乐保留本活动最终解释权。
+        {{$t('home.rule_7')}}
       </p>
     </div>
 
     <div class="wap">
+      <!-- <LangNav></LangNav> -->
+
       <img class="home-banners wap" src="@/static/activity/y-wap-home.png" />
 
-      <b class="home-texts f-s">首存以下活动列表金额 - 获取终极豪礼</b>
+      <b class="home-texts f-s">{{$t('home.first_deposit')}}</b>
       <div class="home-list f-c f-wrap">
         <div class="lists-body" v-for="(data, index) in list" :key="index">
           <img class="ac-img" src="@/static/activity/y-money.png" />
           <div class="f-c ac-moneys">{{ data.money }}</div>
-          <span class="ac-texta-y">首存豪礼 {{ data.money }}</span>
-          <span class="ac-textb-y">需首存金额</span>
-          <div class="moneya-y">
+          <span class="ac-texta-y">{{$t('home.first_deposit_gift')}} {{ data.money }}</span>
+          <span class="ac-textb-y">{{$t('home.req_deposit_amount')}}</span>
+          <div class="moneya">
             ¥
             <el-statistic
               group-separator=","
@@ -78,44 +75,41 @@
             >
             </el-statistic>
           </div>
-          <button class="f-c a-btn-yy" @click="btnFx(data.money, data.id)">
-            立即兑换
-          </button>
+          <view class="f-c ac-btn" @click="btnFx(data.money, data.id)">
+            {{$t('home.redeem')}}
+          </view>
         </div>
       </div>
 
       <div class="a-btn f-c">
         <span class="a-shadow">活动规则</span>
-        活动规则
+        {{$t('home.activity_rules')}}
       </div>
       <p class="a-content">
-        1. 本活动汛利全员皆可参与；　
+        {{$t('home.rule_1')}}
         <i></i>
-        2. 首存豪礼：活动仅支持首次存款成功的账号，
-        24小时内累计的首存总金额满足活动要求，请于30天内进行兑换即可获得对应礼金。
-        （例如：会员首存金额达到50W即可申请18,888、6,888、5,888、3,888、1,888、388、138、88元礼金，八选一进行申请）;
+        {{$t('home.rule_2')}}
         <i></i>
-        3.
-        一个账号只能领取一次首存豪礼，礼金有效兑换期为30天，礼金有效期内没有领取视为主动放弃礼金;　
+        {{$t('home.rule_3')}}
         <i></i>
-        4.
-        礼金领取方式：会员在满足对应的条件后即可在活动页面点击“立即兑换”自助领取礼金，相关工作人员会按照申请顺序进行审核，礼金的
-        审核状态可在“兑奖记录”中进行查看，审核通过后汛利娱乐会依次发放礼金，礼金将在5个工作日内派发至用户的中心钱包；
+        {{$t('home.rule_4')}}
         <i></i>
-        5. 提款要求：首存豪礼需6倍流水提款；
+        {{$t('home.rule_5')}}
         <i></i>
-        6.
-        每位有效玩家、每1手机号码、电子邮箱、相同银行卡、每1个IP地址、每1台电脑使用者在活动期间每场赛事仅可享受1次优惠，
-        如会员使用一切不正常投注、套利等违规行为，我们将保留无限期审核扣回礼金及所产生的利润权利；
+        {{$t('home.rule_6')}}
         <i></i>
-        7. 此为避免文字理解差异，汛利娱乐保留本活动最终解释权。
+        {{$t('home.rule_7')}}
       </p>
     </div>
   </div>
 </template>
 
 <script>
+import state from "../../store/state";
+
+import { localizationMixin } from "../../assets/localization";
 export default {
+  mixins: [localizationMixin],
   props: ["vals"],
   data() {
     return {
@@ -174,7 +168,25 @@ export default {
     };
   },
   onLoad(v) {
+    const searchParams = new URLSearchParams(window.location.search);
+    uni.setStorageSync("lang", searchParams.get("lang")),
     console.log(v, "load");
+  },
+  beforeCreate() {
+    uni.removeStorageSync('lang');
+    uni.removeStorageSync('alreadyRedirected');
+  },
+  created() {
+    const lang = uni.getStorageSync('lang');
+    const alreadyRedirected = uni.getStorageSync('alreadyRedirected');
+    if (lang && !alreadyRedirected) {
+      uni.setStorageSync('alreadyRedirected', 'true');
+      const searchParams = new URLSearchParams(window.location.search);
+      if (!searchParams.has('redirected')) {
+        searchParams.set('redirected', 'true');
+        window.location.search = searchParams.toString();
+      }
+    }
   },
   methods: {
     async bankFx() {
@@ -185,14 +197,13 @@ export default {
           this.bank = res.data.allBankCard;
         } else {
           uni.showToast({
-            title: res.msg,
+            title: state.codes[res.code], 
             icon: "none",
           });
         }
       });
     },
     async btnFx(num, id) {
-      // bank -set wait
       if (!this.apiBank) {
         await this.$ajax(this.$bank).then((res) => {
           if (res.code == 0) {
@@ -200,7 +211,7 @@ export default {
             this.bank = res.data.allBankCard;
           } else {
             uni.showToast({
-              title: res.msg,
+              title: state.codes[res.code],
               icon: "none",
             });
           }
@@ -209,37 +220,33 @@ export default {
           return;
         }
       }
-      if (this.bank == "") {
-        uni.showToast({
-          title: "请先绑定银行卡之后,再兑换",
-          icon: "none",
-        });
-        return;
-      }
-      //申请活动
+      // if (this.bank == "") {
+      //   uni.showToast({
+      //     title: this.$t('alerts.bind_bank_redeem'),
+      //     icon: "none",
+      //   });
+      //   return;
+      // } 
       let that = this;
       let data = {
-        activityId: 4, //首存活动 id
+        activityId: 4, 
         activityAwardId: id,
-        //uniqueCode:'',
-        applyAmount: num, //申请金额，晋级优惠必传
+        applyAmount: num,
       };
+      console.log(data,"data");
+
       uni.showLoading({
-        title: "加载中..",
+        title: this.$en(state.ens.alerts.loading),
         mask: true,
       });
       let params = new URLSearchParams(data);
-      // let head = {
-      //     'Auth-Token':uni.getStorageSync('tokens').token,
-      // };
       that.$axios(that.$activity, params).then((res) => {
         uni.showToast({
-          title: res.msg,
+          title: state.codes[res.code],
           icon: "none",
         });
         uni.hideLoading();
       });
-      //过3秒自动取消
       setTimeout((res) => {
         uni.hideLoading();
       }, 3000);
@@ -292,9 +299,9 @@ export default {
   .ac-textb-y {
     color: #008d91;
     font-family: Microsoft YaHei UI;
-    font-size: 18px;
+    font-size: 32rpx;
     font-weight: 400;
-    line-height: 15.24px;
+    line-height: 30.24rpx;
     text-align: center;
     margin-top: 12rpx;
   }
@@ -312,9 +319,9 @@ export default {
   .ac-texta-y {
     color: #003b3d;
     font-family: Microsoft YaHei UI;
-    font-size: 18px;
+    font-size: 32rpx;
     font-weight: 400;
-    line-height: 15.24px;
+    line-height: 30.24rpx;
     text-align: center;
   }
   .btns_y {
@@ -331,16 +338,6 @@ export default {
     letter-spacing: -0.4612903296947479px;
     text-align: center;
     border-radius: 0 !important;
-  }
-
-  /deep/ .moneya-y {
-    color: #304258;
-    padding: 20rpx 0 20rpx 0;
-    display: flex;
-    align-items: center;
-  }
-  /deep/ .moneya-y .number {
-    font-size: 36rpx !important;
   }
 
   .right_one {
@@ -378,8 +375,49 @@ export default {
   display: block;
   height: 10px;
 }
-
+/deep/ .moneya {
+  color: #008d91;
+  padding: 10rpx 0 10rpx 0;
+  font-size: 32rpx !important;
+  display: flex;
+  align-items: center;
+}
+/deep/.number {
+  font-weight: 400;
+  color: #008d91;
+  font-size: 32rpx !important;
+  padding: 0 2rpx !important;
+}
+.ac-btn{
+  margin-top: 20rpx;
+  background: #008d91;
+  color: #fff;
+  font-size: 47rpx;
+  padding: 8.14rpx 30.88rpx;
+}
 @media screen and (max-width: 768px) {
+
+  .ac-btn {
+    margin-top: 20rpx;
+    background: #008d91;
+    font-size: 22rpx;
+    color: #fff;
+    padding: 8.14rpx 30.88rpx;
+  }
+
+  /deep/ .moneya {
+    color: #008d91;
+    padding: 10rpx 0 10rpx 0;
+    font-size: 24rpx !important;
+    display: flex;
+    align-items: center;
+  }
+  /deep/.number {
+  font-weight: 400;
+    color: #008d91;
+    font-size: 24rpx !important;
+    padding: 0 2rpx !important;
+  }
   .home-texts {
     font-size: 24rpx;
     color: #003b3d;
@@ -404,9 +442,9 @@ export default {
   .ac-textb-y {
     color: #008d91;
     font-family: Microsoft YaHei UI;
-    font-size: 12px;
+    font-size: 24rpx;
     font-weight: 400;
-    line-height: 15.24px;
+    line-height: 30rpx;
     text-align: center;
     margin-top: 12rpx;
   }
@@ -422,20 +460,10 @@ export default {
   .ac-texta-y {
     color: #003b3d;
     font-family: Microsoft YaHei UI;
-    font-size: 12px;
+    font-size: 24rpx;
     font-weight: 400;
-    line-height: 15.24px;
+    line-height: 30rpx;
     text-align: center;
-  }
-
-  /deep/ .moneya-y {
-    color: #304258;
-    padding: 20rpx 0 20rpx 0;
-    display: flex;
-    align-items: center;
-  }
-  /deep/ .moneya-y .number {
-    font-size: 24rpx !important;
   }
 
   .a-btn-yy {
@@ -445,6 +473,7 @@ export default {
     position: relative;
     background: #003b3d;
     height: 22px;
+    padding: 10px;
     color: #d9d9d9;
   }
 

@@ -1,189 +1,245 @@
 <template>
-  <div>
-    <div class="pc">
+  <!-- v-if="$store.state.apiUrl != null || $store.state.apiUrl != ''" -->
+  <view >
+    <view class="pc">
+      <!-- <LangNav></LangNav> -->
       <view class="main_view f-c">
         <view class="left_one pc">
-          <text class="text_left">活动对象：</text>
-          <p class="text_p">汛利体育VIP1及以上会员</p>
-          <text class="text_left">活动时间：</text>
-          <p class="text_p">长期</p>
-          <text class="text_left">活动存款时间：</text>
-          <p class="text_p">指定赛事开始前24小时内</p>
-          <text class="text_left">活动内容：</text>
+          <text class="text_left">{{ $t("bag.target_audience") }}</text>
+          <p class="text_p">{{ $t("bag.sports_vip") }}</p>
+          <text class="text_left">{{ $t("bag.activity_time") }}</text>
+          <p class="text_p">{{ $t("bag.long") }}</p>
+          <text class="text_left">{{ $t("bag.activity_time_deposit") }}</text>
+          <p class="text_p">{{ $t("bag.within_24") }}</p>
+          <text class="text_left">{{ $t("bag.activities") }}</text>
           <p class="text_p">
-            若会员投注于指定赛事结算后，本场赛事的总负盈利可获得100%本金返还，最高1888元，仅需一倍流水即可出款。
-            如果会员同时间在所有体育场馆参与指定活动赛事，活动结算时盈亏将累计计算。
+            {{ $t("bag.activities_details") }}
+            <span style="color: red">{{
+              $t("bag.event_details_extra_text")
+            }}</span>
           </p>
+          <text class="text_left">{{ $t("bag.event_details") }}</text>
+          <p class="text_p" style="color: red">
+            {{ $t("bag.event_details_msg") }}
+          </p>
+
+          <view class="" style="padding: 0; width: 710rpx">
+            <view class="vip-border" style="margin-top: 0; width: 710rpx">
+              <view class="vip-title" style="">
+                <span>{{ $t("bag.belwo_red_title1") }}</span>
+                <span>{{ $t("bag.belwo_red_title2") }}</span>
+              </view>
+              <view>
+                <view
+                  class="vip-content"
+                  v-for="(item, index) in $store.state.matches"
+                  :key="index"
+                  style="padding: 60rpx 0"
+                >
+                  <span style="width: 38%"
+                    >{{ item.leagueName }} <br />
+                    {{ formatTimestamp(item.matchTime) }}
+                  </span>
+                  <span style="width: 38%">{{ item.matchName }}</span>
+                </view>
+              </view>
+            </view>
+          </view>
         </view>
         <img class="right_one pc" src="@/static/activity/bag/y-pc.png" />
       </view>
 
-      <div class="content">
-        <div class="vip-border">
-          <div class="vip-title">
-            <span>会员等级</span>
-            <span>最高返还</span>
-          </div>
-          <div>
-            <div class="vip-content">
-              <span>VIP1 & VIP2</span>
-              <span>38</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP3</span>
-              <span>58</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP4</span>
-              <span>88</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP5</span>
-              <span>118</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP6</span>
-              <span>188</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP7</span>
-              <span>218</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP8</span>
-              <span>328</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP9</span>
-              <span>458</span>
-            </div>
-            <div class="vip-content">
-              <span>VIP10</span>
-              <span>1888</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <view class="content">
+        <view class="vip-border">
+          <view class="vip-title">
+            <span>{{ $t("bag.member_level") }}</span>
+            <span>{{ $t("bag.maximum_return") }}</span>
+          </view>
+          <view>
+            <view
+              class="vip-content"
+              v-for="(item, index) in $store.state.ens.bag.indemnityBonus"
+              :key="index"
+            >
+              <span>{{ item.vip }}</span>
+              <span>{{ item.indemnityBonus }}</span>
+            </view>
+          </view>
+        </view>
+      </view>
 
-      <div class="a-btn-y f-c">活动规则</div>
+      <view class="a-btn-y f-c">{{ $t("bag.activity_rules") }}</view>
       <p class="a-content-y">
-        1. 本活动仅限体育场馆参与；　
+        {{ $t("bag.rule_1") }}
         <i></i>
-        2. 会员VIP等级以指定赛事开始前系统VIP等级为准；
+        {{ $t("bag.rule_2") }}
         <i></i>
-        3.
-        以上负盈利仅对已结算并产生输赢结果的投注额进行计算，任何走水、串关、取消的赛事将不计算在有效投注。任何低于欧洲盘1.5或亚洲盘0.5水位的投注以及在同一赛事中同时投注对等盘口，
-        将不计算在投注额内；
+        {{ $t("bag.rule_3") }}
         <i></i>
-        4.
-        每位真实有效玩家/每1手机号码/电子邮箱/户籍地址/现居地址/同1银行卡/每一IP地址/每1台电脑或上网设备，每场赛事仅能参加并享受一次优惠活动，若有违规者，将不享受此红利；
+        {{ $t("bag.rule_4") }}
         <i></i>
-        5. 彩金仅需一倍流水即可出款；
+        {{ $t("bag.rule_5") }}
         <i></i>
-        6.
-        会员无需申请，满足申请条件的会员系统会在48小时内进行派奖，可以在交易记录中-选择红利记录中查看。
+        {{ $t("bag.rule_6") }}
         <i></i>
-        7. 若发现有套利客户，对赌或不诚实获取盈利之行为，将取消其优惠资格；
+        {{ $t("bag.rule_7") }}
         <i></i>
-        8. 此活动最终解释权归汛利体育所有。
+        {{ $t("bag.rule_8") }}
       </p>
-    </div>
+    </view>
 
-    <div class="wap">
+    <view class="wap">
+      <!-- <LangNav></LangNav> -->
+
       <img class="home-banners wap" src="@/static/activity/bag/y-wap.png" />
 
-
       <view class="left_one_w">
-        <text class="text_left_w">活动对象：</text>
-        <p class="text_p_w">汛利体育VIP1及以上会员</p>
-        <text class="text_left_w">活动时间：</text>
-        <p class="text_p_w">长期</p>
-        <text class="text_left_w">活动存款时间：</text>
-        <p class="text_p_w">指定赛事开始前24小时内</p>
-        <text class="text_left_w">活动内容：</text>
+        <text class="text_left_w">{{ $t("bag.target_audience") }}</text>
+        <p class="text_p_w">{{ $t("bag.sports_vip") }}</p>
+        <text class="text_left_w">{{ $t("bag.activity_time") }}</text>
+        <p class="text_p_w">{{ $t("bag.long") }}</p>
+        <text class="text_left_w">{{ $t("bag.activity_time_deposit") }}</text>
+        <p class="text_p_w">{{ $t("bag.within_24") }}</p>
+        <text class="text_left_w">{{ $t("bag.activities") }}</text>
         <p class="text_p_w">
-          若会员投注于指定赛事结算后，本场赛事的总负盈利可获得100%本金返还，最高1888元，仅需一倍流水即可出款。
-          如果会员同时间在所有体育场馆参与指定活动赛事，活动结算时盈亏将累计计算。
+          {{ $t("bag.activities_details") }}
+          <span style="color: red">{{
+            $t("bag.event_details_extra_text")
+          }}</span>
+        </p>
+        <text class="text_left_w">{{ $t("bag.event_details") }}</text>
+        <p class="text_p_w" style="color: red">
+          {{ $t("bag.event_details_msg") }}
         </p>
       </view>
 
-	  <div class="content_w">
-		<div class="vip-border_w">
+      <view class="content_w">
+        <view
+          class=""
+          style="
+            border-radius: 20rpx;
+            overflow: hidden;
+            width: 610rpx;
+            margin: 0 auto;
+          "
+        >
+          <view>
+            <view class="vip-content_w">
+              <span
+                class="right_p"
+                style="
+                  padding: 16px 0 24px 0;
+                  font-weight: 700 !important;
+                  color: #003b3d;
+                  background-color: #c1c1c1;
+                "
+                >{{ $t("bag.belwo_red_title1") }}</span
+              >
+              <span
+                class="right_pp"
+                style="
+                  padding: 16px 0 24px 0;
+                  font-weight: 700 !important;
+                  color: #003b3d;
+                  background-color: #c1c1c1;
+                "
+                >{{ $t("bag.belwo_red_title2") }}</span
+              >
+            </view>
 
-			<div>
-				<div class="vip-content_w" >
-					<span class="right_p" style="padding: 16px 0 24px 0; font-weight:700 !important; color:#003B3D;">会员等级</span>
-					<span class="right_pp" style="padding: 16px 0 24px 0; font-weight:700 !important;  color:#003B3D;">最高返还</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP1 & VIP2</span>
-					<span class="right_pp">38</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP3</span>
-					<span class="right_pp">58</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP4</span>
-					<span class="right_pp">88</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP5</span>
-					<span class="right_pp">118</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP6</span>
-					<span class="right_pp">188</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP7</span>
-					<span class="right_pp">218</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP8</span>
-					<span class="right_pp">328</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP9</span>
-					<span class="right_pp">458</span>
-				</div>
-				<div class="vip-content_w">
-					<span class="right_p">VIP10</span>
-					<span class="right_pp">1888</span>
-				</div>
-			</div>
-		</div>
-	</div>
+            <view
+              class="vip-content_w"
+              style="background-color: #d9d9d9; padding: 20rpx 0"
+              v-for="(item, index) in $store.state.matches"
+              :key="index"
+            >
+              <span
+                class="right_p f-c"
+                style="background-color: #d9d9d9; width: 45%"
+                >{{ item.leagueName }} <br />
+                {{ formatTimestamp(item.matchTime) }}
+              </span>
+              <span
+                class="right_pp f-c"
+                style="background-color: #d9d9d9; width: 45%"
+                >{{ item.matchName }}</span
+              >
+            </view>
+          </view>
+        </view>
+      </view>
 
-      <div class="a-btn f-c">
-        活动规则
-      </div>
+      <view class="content_w">
+        <view class="vip-border_w">
+          <view>
+            <view class="vip-content_w">
+              <span
+                class="right_p"
+                style="
+                  padding: 16px 0 24px 0;
+                  font-weight: 700 !important;
+                  color: #003b3d;
+                "
+                >{{ $t("bag.member_level") }}</span
+              >
+              <span
+                class="right_pp"
+                style="
+                  padding: 16px 0 24px 0;
+                  font-weight: 700 !important;
+                  color: #003b3d;
+                "
+                >{{ $t("bag.maximum_return") }}</span
+              >
+            </view>
+
+            <view
+              class="vip-content_w"
+              v-for="(item, index) in $store.state.ens.bag.indemnityBonus"
+              :key="index"
+            >
+              <span class="right_p f-c">{{ item.vip }}</span>
+              <span class="right_pp f-c">{{ item.indemnityBonus }}</span>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="a-btn f-c">
+        {{ $t("bag.activity_rules") }}
+      </view>
       <p class="a-content">
-        1.  本活动仅限体育场馆参与；　
-            <i></i>
-            2.  会员VIP等级以指定赛事开始前系统VIP等级为准；　
-            <i></i>
-            3.  以上负盈利仅对已结算并产生输赢结果的投注额进行计算，任何走水、串关、取消的赛事将不计算在有效投注。任何低于欧洲盘1.5或亚洲盘0.5水位的投注以及在同一赛事中同时投注对等盘口， 将不计算在投注额内；
-            <i></i>
-            4.  每位真实有效玩家/每1手机号码/电子邮箱/户籍地址/现居地址/同1银行卡/每一IP地址/每1台电脑或上网设备，每场赛事仅能参加并享受一次优惠活动，若有违规者，将不享受此红利；
-            <i></i>
-            5.  彩金仅需一倍流水即可出款；
-            <i></i>
-            6. 会员无需申请，满足申请条件的会员系统会在48小时内进行派奖，可以在交易记录中-选择红利记录中查看。
-            <i></i>
-            7.  若发现有套利客户，对赌或不诚实获取盈利之行为，将取消其优惠资格；
-            <i></i>
-            8.  此活动最终解释权归汛利体育所有。
+        {{ $t("bag.rule_1") }}
+        <i></i>
+        {{ $t("bag.rule_2") }}
+        <i></i>
+        {{ $t("bag.rule_3") }}
+        <i></i>
+        {{ $t("bag.rule_4") }}
+        <i></i>
+        {{ $t("bag.rule_5") }}
+        <i></i>
+        {{ $t("bag.rule_6") }}
+        <i></i>
+        {{ $t("bag.rule_7") }}
+        <i></i>
+        {{ $t("bag.rule_8") }}
       </p>
-    </div>
-  </div>
+    </view>
+  </view>
 </template>
 
 <script>
+import { localizationMixin } from "../../assets/localization";
+import state from "../../store/state";
+
 export default {
+  mixins: [localizationMixin],
   props: ["vals"],
   data() {
     return {
+      // matches: "",
+      urls: this.$match,
       leftVal: 0, //进度
       result: "", // android 传过来的token
       results: "", //值2
@@ -239,18 +295,85 @@ export default {
     };
   },
   onLoad(v) {
-    console.log(v, "load");
+    this.$MatchFx();
+    const searchParams = new URLSearchParams(window.location.search);
+    uni.setStorageSync("lang", searchParams.get("lang"));
+    // console.log(v, "load");
+  },
+  // mounted() {
+  //   this.$MatchFx(); 
+  // },
+  // beforeMount() {
+  //   this.$MatchFx();
+    
+  // },
+  
+  beforeCreate() {
+    uni.removeStorageSync("lang");
+    uni.removeStorageSync("alreadyRedirected");
+  },
+  created() {
+    // this.MatchFx();
+    const lang = uni.getStorageSync("lang");
+    const alreadyRedirected = uni.getStorageSync("alreadyRedirected");
+    if (lang && !alreadyRedirected) {
+      uni.setStorageSync("alreadyRedirected", "true");
+      const searchParams = new URLSearchParams(window.location.search);
+      if (!searchParams.has("redirected")) {
+        searchParams.set("redirected", "true");
+        window.location.search = searchParams.toString();
+      }
+    }
   },
   methods: {
+    formatTimestamp(timestamp) {
+      const time =
+        timestamp.toString().length === 10 ? timestamp * 1000 : timestamp;
+      const date = new Date(time);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    },
+
+    // MatchFx() {
+    //   let that = this;
+    //   let head = {
+    //     "Auth-Token": uni.getDeviceInfo().deviceId,
+    //   };
+    //   this.$ajax(this.urls, head).then((res) => {
+    //     this.matches = res.data.indemnityMatch;
+    //     if (res.code == 0) {
+    //       this.isshow = 1;
+
+    //       uni.showToast({
+    //         title: state.codes[res.code],
+    //         icon: "none",
+    //       });
+    //     } else {
+    //       uni.showToast({
+    //         title: state.codes[res.code],
+    //         icon: "none",
+    //       });
+    //       this.isshow = 0;
+    //     }
+    //   });
+    // },
+
     async bankFx() {
-      console.log("bank银行卡信息");
+      // console.log("bank银行卡信息");
       await this.$ajax(this.$bank).then((res) => {
+        // console.log(res,"ews");
+
         if (res.code == 0) {
           this.apiBank = true;
           this.bank = res.data.allBankCard;
         } else {
           uni.showToast({
-            title: res.msg,
+            title: state.codes[res.code],
             icon: "none",
           });
         }
@@ -265,7 +388,7 @@ export default {
             this.bank = res.data.allBankCard;
           } else {
             uni.showToast({
-              title: res.msg,
+              title: state.codes[res.code],
               icon: "none",
             });
           }
@@ -276,7 +399,7 @@ export default {
       }
       if (this.bank == "") {
         uni.showToast({
-          title: "请先绑定银行卡之后,再兑换",
+          title: this.$t("alerts.bind_bank_redeem"),
           icon: "none",
         });
         return;
@@ -290,7 +413,7 @@ export default {
         applyAmount: num, //申请金额，晋级优惠必传
       };
       uni.showLoading({
-        title: "加载中..",
+        title: this.$en(state.ens.alerts.loading),
         mask: true,
       });
       let params = new URLSearchParams(data);
@@ -299,7 +422,7 @@ export default {
       // };
       that.$axios(that.$activity, params).then((res) => {
         uni.showToast({
-          title: res.msg,
+          title: state.codes[res.code],
           icon: "none",
         });
         uni.hideLoading();
@@ -424,9 +547,9 @@ export default {
 
 @media screen and (max-width: 768px) {
   .left_one_w {
-z-index: 101;
-	margin-left: 70rpx;
-	margin-top: -280rpx;
+    z-index: 101;
+    margin-left: 70rpx;
+    margin-top: -280rpx;
     .text_left_w {
       font-family: Microsoft YaHei UI;
       font-size: 12px;
@@ -434,7 +557,7 @@ z-index: 101;
       line-height: 15.24px;
       letter-spacing: -0.5px;
       text-align: left;
-	  color: #003B3D;
+      color: #003b3d;
     }
     .text_p_w {
       font-family: Microsoft YaHei UI;
@@ -443,63 +566,60 @@ z-index: 101;
       line-height: 15.24px;
       letter-spacing: -0.5px;
       text-align: left;
-	  color: #003B3D;
-	  margin-bottom: 32rpx;
-	  width: 606rpx;
-	  
+      color: #003b3d;
+      margin-bottom: 32rpx;
+      width: 606rpx;
     }
   }
 
-  .content_w{
-	padding: 30rpx 70rpx 0 70rpx;
-}
-.vip-border_w{
-	border-radius: 40rpx;
-	overflow: hidden;
-	width:610rpx;
-	margin: 0 auto;
-}
-.vip-title{
-	background:#DEDEDE;
-	color:#fff;
-	font-weight:bold;
-	font-size:24rpx;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-}
-.vip-title span{
-	width:50%;
-	text-align: center;
-}
-.vip-content_w{
-	font-size:24rpx;
-	color:#fff;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-}
+  .content_w {
+    padding: 30rpx 70rpx 0 70rpx;
+  }
+  .vip-border_w {
+    border-radius: 40rpx;
+    overflow: hidden;
+    width: 610rpx;
+    margin: 0 auto;
+  }
+  .vip-title {
+    background: #dedede;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24rpx;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .vip-title span {
+    width: 50%;
+    text-align: center;
+  }
+  .vip-content_w {
+    font-size: 24rpx;
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 
-.vip-content span{
-	width:50%;
-	text-align: center;
-}
-.right_p{
-	width:50%;
-	text-align: center;
-	background: #DEDEDE;
-	height: 88rpx;
-	color: #003B3D;
-
-}
-.right_pp{
-	height: 88rpx;
-	width:50%;
-	text-align: center;
-	background: #C1C1C1;
-	color: #008D91;
-}
-
+  .vip-content span {
+    width: 50%;
+    text-align: center;
+  }
+  .right_p {
+    width: 50%;
+    text-align: center;
+    background: #dedede;
+    height: 88rpx;
+    color: #003b3d;
+  }
+  .right_pp {
+    height: 88rpx;
+    width: 50%;
+    text-align: center;
+    background: #c1c1c1;
+    color: #008d91;
+  }
 
   .a-btn {
     width: 460rpx;
@@ -538,7 +658,6 @@ uni-page-body {
   font-family: "Microsoft YaHei";
 }
 
-// 手机样式 活动页面
 @media screen and (max-width: 768px) {
   uni-page-body {
     background: #fff;

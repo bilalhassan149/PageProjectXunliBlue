@@ -1,128 +1,55 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/down",
 			"name": "index",
 			"aliasPath": "/",
 			"style": {
 				"navigationBarTitleText": "下载页",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
+			}
+		},
+		{
+			"path": "pages/test",
+			"style": {
+				"navigationBarTitleText": "TEST",
+				"navigationStyle": "custom" 
 			}
 		},
 		{
 			"path": "pages/line",
 			"style": {
 				"navigationBarTitleText": "线路页",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
 			}
 		},
 		{
 			"path": "pages/tests",
 			"style": {
-				"navigationBarTitleText": "汛利线路页",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationBarTitleText": "永乐线路页",
+				"navigationStyle": "custom" 
 			}
 		},
 		{
 			"path": "pages/reg",
 			"style": {
 				"navigationBarTitleText": "注册页",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
 			}
 		},
-		//获取代理号跳转页
 		{
 			"path": "pages/register",
 			"style": {
 				"navigationBarTitleText": "跳转中..",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
 			}
 		},
 		{
-			"path": "pages/activity/home",
-			"style": {
-				"navigationBarTitleText": "首存活动",
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/bet",
-			"style": {
-				"navigationBarTitleText": "投注活动", //旧活动-上月
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/bets",
-			"style": {
-				"navigationBarTitleText": "投注活动", 
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/bag",
-			"style": {
-				"navigationBarTitleText": "赛事包赔活动",
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/newBag",
-			"style": {
-				"navigationBarTitleText": "赛事包赔活动",
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/newBet",
-			"style": {
-				"navigationBarTitleText": "投注活动",
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/topNewBet",
-			"style": {
-				"navigationBarTitleText": "投注活动", //活动-上月
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/newHome",
-			"style": {
-				"navigationBarTitleText": "首存活动",
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		},
-		{
-			"path": "pages/activity/daily",
-			"style": {
-				"navigationBarTitleText": "每日豪礼",
-				"navigationStyle": "custom" //禁用原生导航栏
-			}
-		}
-		
-		// ,
-		// {
-		// 	"path": "pages/toggle/toggle",
-		// 	"style": {
-		// 		"navigationBarTitleText": "测试baner",
-		// 		"navigationStyle": "custom" //禁用原生导航栏
-		// 	}
-		// },
-		// {
-		// 	"path": "pages/ceshi",
-		// 	"style": {
-		// 		"navigationBarTitleText": "测试baner",
-		// 		"navigationStyle": "custom" //禁用原生导航栏
-		// 	}
-		// }
-	    ,{
             "path" : "pages/activity/yNewBet",
             "style" :                                                                                    
             {
 				"navigationBarTitleText": "投注活动",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
             }
             
         }
@@ -131,7 +58,7 @@
             "style" :                                                                                    
             {
 				"navigationBarTitleText": "首存活动",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
             }
             
         }
@@ -140,7 +67,7 @@
             "style" :                                                                                    
             {
 				"navigationBarTitleText": "赛事包赔活动",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
             }
             
         }
@@ -149,12 +76,83 @@
             "style" :                                                                                    
             {
 				"navigationBarTitleText": "每日豪礼",
-				"navigationStyle": "custom" //禁用原生导航栏
+				"navigationStyle": "custom" 
             }
             
         }
+        ,{
+            "path" : "pages/activity/newMember",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "navigationStyle": "custom" 
+            }
+            
+        }
+        ,{
+            "path" : "pages/activity/perDay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "navigationStyle": "custom" 
+            }
+            
+        }
+        ,{
+            "path" : "pages/reg2",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/activity/activityOne",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "navigationStyle": "custom" 
+            }
+            
+        }
+        ,{
+            "path" : "pages/activity/activityTwo",
+            "style" :                                                                                    
+           {
+               "navigationBarTitleText": "",
+               "navigationStyle": "custom" 
+           }
+            
+        }
+        ,{
+            "path" : "pages/activity/activityThree",
+            "style" :                                                                                    
+           {
+               "navigationBarTitleText": "",
+               "navigationStyle": "custom" 
+           }
+            
+        }
+        ,{
+            "path" : "pages/activity/activityFour",
+            "style" :                                                                                    
+           {
+               "navigationBarTitleText": "",
+               "navigationStyle": "custom" 
+           }
+            
+        }
+        ,{
+            "path" : "pages/activity/activityFive",
+            "style" :                                                                                    
+           {
+               "navigationBarTitleText": "",
+               "navigationStyle": "custom" 
+           }
+            
+        }
     ],
-	//设置导航栏和背景颜色
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "单页面", 

@@ -9,12 +9,30 @@ export function bet(index) {
     state.betTotal = n0[n0.length - 1].valid;
     state.betTotalImg = n0[n0.length - 1].imageUrl;
   } else if (index == 1) {
-    state.betTotal = n1[n1.length - 1].valid; 
+    state.betTotal = n1[n1.length - 1].valid;
     state.betTotalImg = n1[n1.length - 1].imageUrl;
   } else {
     state.betTotal = n2[n2.length - 1].valid;
     state.betTotalImg = n2[n2.length - 1].imageUrl;
   }
+}
+
+export function MatchFx() {
+  let head = {
+    "Auth-Token": uni.getDeviceInfo().deviceId,
+  };
+  this.$ajax(this.$match, head).then((res) => {
+    state.matches = res.data.indemnityMatch;
+    if (res.code == 0) {
+      this.isshow = 1;
+    } else {
+      uni.showToast({
+        title: state.codes[res.code],
+        icon: "none",
+      });
+      this.isshow = 0;
+    }
+  });
 }
 
 // 联系客服
@@ -26,31 +44,16 @@ export function about() {
   };
   let data = uni.getStorageSync("id") + " 的推广游客";
   this.$ajax(url).then((res) => {
-    // console.log(res.datas);
+    console.log(res.datas);
     window.open(
       res.datas.customerService.url + '?metadata={"name":"' + data + '"}',
       "_blank"
     );
   });
 }
-
-export function VipData() {
-	let that = this
-  let json = that.$store.state.jsons;
-  let url = {
-    urls: that.$store.state.jsonUrl + json.popularize,
-  };
-  // console.log(url,"url");
-  this.$ajax(url).then((res) => {
-    state.VipData = res.validActivity;
-    uni.setStorageSync("VipData", state.VipData);
-    // console.log(state.betVipData, "betvipdata");
-  });
-}
-
 // token
 export function tokenFx() {
-  // console.log("活动id");
+  console.log("活动id");
   let that = this;
   //接收H5、pc value
   window.addEventListener("message", (e) => {
@@ -89,13 +92,13 @@ export function copy(text) {
     data: text,
     success() {
       uni.showToast({
-        title: "复制成功",
+        title: this.$t("alerts.copy"),
         icon: "none",
       });
     },
     fail() {
       uni.showToast({
-        title: "不支持复制，或请刷新浏览器在试试",
+        title: this.$t("alerts.copy_not_supports"),
         icon: "none",
       });
     },
